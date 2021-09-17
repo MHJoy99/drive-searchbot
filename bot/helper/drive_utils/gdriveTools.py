@@ -139,7 +139,7 @@ class GoogleDriveHelper:
             response = self.drive_query(parent_id, fileName)
             if response:
                 if add_title_msg:
-                    msg = f'<h3>Search Results for: {fileName}</h3><br>drive-searchbot<br><br>'
+                    msg = f'<h3>Search Results for: {fileName}</h3><br>MHJoyBots Drive Search<br><br>'
                     add_title_msg = False
                 msg += f"╾────────────╼<br><b>{DRIVE_NAME[INDEX]}</b><br>╾────────────╼<br>"
                 for file in response:
