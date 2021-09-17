@@ -1,11 +1,12 @@
-# What is this repo about?
-This is a telegram bot writen in Python for searching files in Drive. Based on [SearchX-bot](https://github.com/SVR666/SearchX-bot)
+# Drive Search Bot
+
+This is a Telegram bot writen in Python for searching files in Drive. Based on [SearchX-bot](https://github.com/SVR666/SearchX-bot)
 
 # How to deploy?
 
 - Clone this repo:
 ```
-git clone https://github.com/SlamDevs/drive-searchbot searchbot/
+git clone https://github.com/breakdowns/drive-searchbot searchbot/
 cd searchbot
 ```
 
@@ -30,10 +31,12 @@ cp config_sample.env config.env
 _____REMOVE_THIS_LINE_____=True
 ```
 Fill up rest of the fields. Meaning of each fields are discussed below:
-- `BOT_TOKEN`: The telegram bot token that you get from @BotFather
+- `BOT_TOKEN`: The telegram bot token that you get from [@BotFather](https://t.me/BotFather)
 - `OWNER_ID`: The Telegram user ID (not username) of the owner of the bot
 - `AUTHORIZED_CHATS`: (optional) Fill user_id and chat_id (not username) of you want to authorize, Seprate them with space, Examples: `-0123456789 -1122334455 6915401739`.
 - `TOKEN_PICKLE_URL`: (optional) Only if you want to load your **token.pickle** externally from an Index Link. Fill this with the direct link of that file.
+- `DRIVE_FOLDER_URL`: (optional) Only if you want to load your **drive_folder** externally from an Index Link. Fill this with the direct link of that file.
+
 ## Upgrading.
 
 If you are coming from last version where recursive searching was not possible, you must run driveid.py again and delete all previous content, and this time you just have to add Drives (Teamdrive or 'root' for Main Drive). See the section below for more.
@@ -64,12 +67,6 @@ pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
 python3 generate_drive_token.py
 ```
 
-## Deploying on Heroku
-- Give a star and Fork this repo
-- Upload **token.pickle** and **drive_folder** to your forks, or you can upload your **token.pickle** to your Index and put your **token.pickle** link to `TOKEN_PICKLE_URL`.
-
-<p><a href="https://heroku.com/deploy"> <img src="https://img.shields.io/badge/Deploy%20to%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200""/></a></p>
-
 ## Deploying on Server
 - Start docker daemon (skip if already running):
 ```
@@ -84,7 +81,23 @@ sudo docker build . -t searchbot
 sudo docker run searchbot
 ```
 
+## Deploying on Heroku
+- Give a star and Fork this repo
+- Upload **token.pickle** and **drive_folder** to your forks, or you can upload your **token.pickle** and **drive_folder** to your Index and put your **token.pickle** and **drive_folder** link to `TOKEN_PICKLE_URL` and `DRIVE_FOLDER_URL`.
+- Hit the **DEPLOY TO HEROKU** button and follow the further instructions in the screen (**NOTE**: If vars not coming, just change deploy link to your fork, Example: `https://dashboard.heroku.com/new?template=https://github.com/yourgithubname/drive-searchbot`).
+
+<p><a href="https://heroku.com/deploy"> <img src="https://img.shields.io/badge/Deploy%20to%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200""/></a></p>
+
+## Deploying on Railway
+- Give a star and Fork this repo
+- Upload **token.pickle** and **drive_folder** to your forks, or you can upload your **token.pickle** and **drive_folder** to your Index and put your **token.pickle** and **drive_folder** link to `TOKEN_PICKLE_URL` and `DRIVE_FOLDER_URL`.
+- Hit the **DEPLOY TO RAILWAY** button and follow the further instructions in the screen.
+
+<p><a href="https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fbreakdowns%2Fdrive-searchbot&plugins=postgresql&envs=BOT_TOKEN%2COWNER_ID%2CAUTHORIZED_CHATS%2CTOKEN_PICKLE_URL%2CDRIVE_FOLDER_URL&optionalEnvs=AUTHORIZED_CHATS%2CTOKEN_PICKLE_URL%2CDRIVE_FOLDER_URL&BOT_TOKENDesc=The+Telegram+bot+token+that+you+get+from+https%3A%2F%2Ft.me%2FBotFather.&OWNER_IDDesc=The+Telegram+User+ID+of+the+Owner+of+the+Bot.+Get+it+by+using+%2Finfo+in+https%3A%2F%2Ft.me%2FMissRose_bot.&AUTHORIZED_CHATSDesc=Fill+User+ID+and+Chat+ID+of+you+want+to+authorize%2C+Seprate+them+with+space.&TOKEN_PICKLE_URLDesc=Only+if+you+want+to+load+your+token.pickle+externally+from+an+index+link.+Fill+this+with+the+direct+link+of+that+file.&DRIVE_FOLDER_URLDesc=Only+if+you+want+to+load+your+drive_folder+externally+from+an+index+link.+Fill+this+with+the+direct+link+of+that+file.&referralCode=Hafitz"> <img src="https://img.shields.io/badge/Deploy%20to%20Railway-blueviolet?style=for-the-badge&logo=railway" width="200""/></a></p>
+
 # Credits:
 
-- [`lzzy12`](https://github.com/lzzy12)
-- [`SVR666`](https://github.com/SVR666)
+- [`lzzy12`](https://github.com/lzzy12) for python-aria-mirror-bot
+- [`SVR666`](https://github.com/SVR666) for SearchX-bot
+
+And many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/breakdowns/drive-searchbot/graphs/contributors).

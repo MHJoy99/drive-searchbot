@@ -4,6 +4,7 @@ import time
 import random
 import string
 import subprocess
+import requests
 
 import telegram.ext as tg
 from dotenv import load_dotenv
@@ -68,7 +69,27 @@ telegraph_token = telegraph.get_access_token()
 DRIVE_NAME = []
 DRIVE_ID = []
 INDEX_URL = []
-LIB_URL = []
+
+try:
+    TOKEN_PICKLE_URL = getConfig('TOKEN_PICKLE_URL')
+    if len(TOKEN_PICKLE_URL) == 0:
+        TOKEN_PICKLE_URL = None
+    else:
+        out = subprocess.run(["wget", "-q", "-O", "token.pickle", TOKEN_PICKLE_URL])
+        if out.returncode != 0:
+            logging.error(out)
+except KeyError:
+    TOKEN_PICKLE_URL = None
+try:
+    DRIVE_FOLDER_URL = getConfig('DRIVE_FOLDER_URL')
+    if len(DRIVE_FOLDER_URL) == 0:
+        DRIVE_FOLDER_URL = None
+    else:
+        out = subprocess.run(["wget", "-q", "-O", "drive_folder", DRIVE_FOLDER_URL])
+        if out.returncode != 0:
+            logging.error(out)
+except KeyError:
+    DRIVE_FOLDER_URL = None
 
 if os.path.exists('drive_folder'):
     with open('drive_folder', 'r+') as f:
@@ -81,27 +102,10 @@ if os.path.exists('drive_folder'):
                 INDEX_URL.append(temp[2])
             except IndexError as e:
                 INDEX_URL.append(None)
-            try:
-                LIB_URL.append(temp[3])
-            except:
-                LIB_URL.append(None)
 
-if DRIVE_ID :
-    pass
-else :
+if not DRIVE_ID:
     LOGGER.error("The README.md file there to be read! Exiting now!")
     exit(1)
-
-try:
-    TOKEN_PICKLE_URL = getConfig('TOKEN_PICKLE_URL')
-    if len(TOKEN_PICKLE_URL) == 0:
-        TOKEN_PICKLE_URL = None
-    else:
-        out = subprocess.run(["wget", "-q", "-O", "token.pickle", TOKEN_PICKLE_URL])
-        if out.returncode != 0:
-            logging.error(out)
-except KeyError:
-    TOKEN_PICKLE_URL = None
 
 updater = tg.Updater(token=BOT_TOKEN, use_context=True)
 bot = updater.bot
